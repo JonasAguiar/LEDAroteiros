@@ -13,6 +13,7 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void remove(T element) {
+		
 		if (!this.isEmpty()) {
 			if (this.head.getData().equals(element)) {
 				if (this.head.equals(this.last)) {
@@ -22,6 +23,7 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 					((DoubleLinkedListNode<T>) this.head.getNext()).setPrevious(((DoubleLinkedListNode<T>) this.head).getPrevious());
 					this.head = ((DoubleLinkedListNode<T>) this.head.getNext());
 				}
+				
 			} else {
 				DoubleLinkedListNode<T> aux = (DoubleLinkedListNode<T>) this.head;
 				
@@ -42,20 +44,29 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 
 	@Override
 	public void insertFirst(T element) {
-		SingleLinkedListNode<T> aux = new DoubleLinkedListNode<>(element, (DoubleLinkedListNode<T>) super.head, new DoubleLinkedListNode<>());
+		
+		SingleLinkedListNode<T> aux = new DoubleLinkedListNode<>(element, 
+				(DoubleLinkedListNode<T>) super.head,
+				new DoubleLinkedListNode<>());
 		super.head = aux;
 	}
 	
 	@Override
 	public void insert(T element) {
+		
 		if (super.isEmpty()) {
-			super.head = new DoubleLinkedListNode<>(element, new DoubleLinkedListNode<>(), new DoubleLinkedListNode<>());
+			super.head = new DoubleLinkedListNode<>(element, 
+					new DoubleLinkedListNode<>(), 
+					new DoubleLinkedListNode<>());
 			this.last = (DoubleLinkedListNode<T>) super.head;
 		} else if (super.size() == 1) {
-			this.last = new DoubleLinkedListNode<>(element, new DoubleLinkedListNode<>(), (DoubleLinkedListNode<T>) super.head);
+			this.last = new DoubleLinkedListNode<>(element, 
+					new DoubleLinkedListNode<>(), 
+					(DoubleLinkedListNode<T>) super.head);
 			super.head.setNext(this.last);
 		} else {
-			SingleLinkedListNode<T> aux = new DoubleLinkedListNode<>(element, new DoubleLinkedListNode<>(), this.last);
+			SingleLinkedListNode<T> aux = new DoubleLinkedListNode<>(element, 
+					new DoubleLinkedListNode<>(), this.last);
 			this.last.setNext(aux);
 			this.setLast((DoubleLinkedListNode<T>) this.last.getNext());
 		}
@@ -68,6 +79,7 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 
 	@Override
 	public void removeLast() {
+		
 		if (super.size() == 1) {
 			super.setHead(new DoubleLinkedListNode<>());
 			this.setLast(new DoubleLinkedListNode<>());

@@ -15,76 +15,72 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public int size() {
-		int size = 0;
-		SingleLinkedListNode<T> aux = this.head;
-			
-		while (!aux.isNIL()) {
-			size++;
-			aux = aux.getNext();
-		}
 		
+		int size = 0;
+		SingleLinkedListNode<T> auxiliar = this.head;
+		while (!auxiliar.isNIL()) {
+			size++;
+			auxiliar = auxiliar.getNext();
+		}
 		return size;		
 	}
 
 	@Override
 	public T search(T element) {
-		SingleLinkedListNode<T> aux = this.head;
 		
-		while (!(aux.isNIL() || aux.getData().equals(element))) {
-			aux = aux.getNext();
+		SingleLinkedListNode<T> auxiliar = this.head;
+		while (!(auxiliar.isNIL() || auxiliar.getData().equals(element))) {
+			auxiliar = auxiliar.getNext();
 		}
-		
-		return aux.getData();		
+		return auxiliar.getData();		
 	}
 
 	@Override
 	public void insert(T element) {
-		SingleLinkedListNode<T> newNode = new SingleLinkedListNode<>(element, new SingleLinkedListNode<>());
 		
+		SingleLinkedListNode<T> newNode = new SingleLinkedListNode<>(element, 
+											new SingleLinkedListNode<>());
 		if (this.isEmpty()) {
 			this.head = newNode; 
 		} else {
-			SingleLinkedListNode<T> aux = this.head;
+			SingleLinkedListNode<T> auxiliar = this.head;
 			
-			while (!aux.getNext().isNIL()) {
-				aux = aux.getNext();
+			while (!auxiliar.getNext().isNIL()) {
+				auxiliar = auxiliar.getNext();
 			}
-			
-			aux.next = newNode;
+			auxiliar.next = newNode;
 		}
 	}
 
 	@Override
 	public void remove(T element) {
+		
 		if (!this.isEmpty()) {
 			if (this.head.getData().equals(element)) {
 				this.head = this.head.getNext(); 
 			} else {
-				SingleLinkedListNode<T> aux = head;
+				SingleLinkedListNode<T> auxiliar = head;
 				
-				while (!aux.getNext().getData().equals(element)) {
-					aux = aux.getNext();
+				while (!auxiliar.getNext().getData().equals(element)) {
+					auxiliar = auxiliar.getNext();
 				}
-				
-				aux.next = aux.getNext().getNext();
+				auxiliar.next = auxiliar.getNext().getNext();
 			}	
 		}
 	}
 
 	@Override
 	public T[] toArray() {
+		
 		@SuppressWarnings("unchecked")
 		T[] array = (T[]) new Object[this.size()];
 		int i = 0;
-		
-		SingleLinkedListNode<T> aux = this.head;
-		
-		while (!aux.isNIL()) {
-			array[i] = aux.getData();
+		SingleLinkedListNode<T> auxiliar = this.head;
+		while (!auxiliar.isNIL()) {
+			array[i] = auxiliar.getData();
 			i++;
-			aux = aux.getNext();
+			auxiliar = auxiliar.getNext();
 		}
-		
 		return array;
 	}
 

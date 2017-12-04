@@ -15,30 +15,31 @@ public class QueueDoubleLinkedListImpl<T> implements Queue<T> {
 
 	@Override
 	public void enqueue(T element) throws QueueOverflowException {
+		
 		if (this.isFull()) {
 			throw new QueueOverflowException();
 		}
-		
 		list.insert(element);
 	}
 
 	@Override
 	public T dequeue() throws QueueUnderflowException {
+		
 		if (this.isEmpty()) {
 			throw new QueueUnderflowException();
 		}
-		
 		@SuppressWarnings("unchecked")
-		T element = (T) ((DoubleLinkedListImpl<T>) list).getHead();
+		T elemento = (T) ((DoubleLinkedListImpl<T>) list).getHead();
 		list.removeFirst();
-		return element;
+		return elemento;
 	}
 
 	@Override
 	public T head() {
+		
 		@SuppressWarnings("unchecked")
-		T element = (T) ((DoubleLinkedListImpl<T>) list).getHead();
-		return element;
+		T elemento = (T) ((DoubleLinkedListImpl<T>) list).getHead();
+		return elemento;
 	}
 
 	@Override

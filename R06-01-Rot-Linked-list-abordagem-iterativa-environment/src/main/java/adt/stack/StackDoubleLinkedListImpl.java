@@ -15,32 +15,31 @@ public class StackDoubleLinkedListImpl<T> implements Stack<T> {
 
 	@Override
 	public void push(T element) throws StackOverflowException {
+		
 		if (this.isFull()) {
 			throw new StackOverflowException();
 		}
-		
 		this.top.insert(element);
 	}
 
 	@Override
 	public T pop() throws StackUnderflowException {
+		
 		if (this.isEmpty()) {
 			throw new StackUnderflowException();
 		}
-		
-		
 		@SuppressWarnings("unchecked")
-		T element = (T) ((DoubleLinkedListImpl<T>) this.top).getLast();
+		T elemento = (T) ((DoubleLinkedListImpl<T>) this.top).getLast();
 		this.top.removeLast();
-		
-		return element;
+		return elemento;
 	}
 
 	@Override
 	public T top() {
+		
 		@SuppressWarnings("unchecked")
-		T element = (T) ((DoubleLinkedListImpl<T>) this.top).getHead();
-		return element;
+		T elemento = (T) ((DoubleLinkedListImpl<T>) this.top).getHead();
+		return elemento;
 	}
 
 	@Override
